@@ -22,7 +22,6 @@ public class Frame extends JFrame {
             int Buffer = TimerThread.MILLI;
 
 
-
             panel.repaint();
 
             if((TimerThread.MILLI - Buffer) < FrameRate){
