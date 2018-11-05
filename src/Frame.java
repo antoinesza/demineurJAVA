@@ -5,6 +5,7 @@ public class Frame extends JFrame {
     public  static int Cases[][] = new int[1000][1000];
     public static int x = 64;
     public static int y = 36;
+    public static int Colors = 1;
     static Panel panel = new Panel();
     static int FrameRate = 12;
     public Frame(String title){

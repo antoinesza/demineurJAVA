@@ -1,5 +1,4 @@
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -16,8 +15,12 @@ public class Panel extends JPanel {
                     g.drawImage(new ImageIcon("-1.png").getImage(),x*20, y*20,null);
                 }
                 else if(Frame.Cases[x][y] > 0) {
+                    if(Frame.Colors == 1){
+
+                    }
+                    g.setFont(new Font("Baby Kruffy", Font.PLAIN, 20));
                     g.setColor(new Color (0, 0, 0));
-                    g.drawString(Integer.toString(Frame.Cases[x][y]), x*20+2, y*20+15);
+                    g.drawString(Integer.toString(Frame.Cases[x][y]), x*20+4, y*20+18);
                 }
             }
         }
