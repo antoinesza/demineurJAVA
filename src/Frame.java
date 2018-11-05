@@ -47,7 +47,8 @@ public class Frame extends JFrame {
         }
         for(int x1 =0; x1 < X; x1++){
             for(int y1 = 0; y1 < Y; y1++){
-                if(Cases[x1][y1] != 0){
+                if(Cases[x1][y1] != -1){
+                    System.out.println(x1+"\t"+y1);
                     int Buffer = 0;
                 if(x1 ==0){
                     if(y1 == 0){
@@ -55,26 +56,26 @@ public class Frame extends JFrame {
                         if(Cases[x1+1][y1+1] == -1) Buffer++;
                         if(Cases[x1][y1+1] == -1) Buffer++;
                     }
-                    if(y1 == Y-1){
+                    else if(y1 == Y){
                         if(Cases[x1-1][y1] == -1) Buffer++;
                         if(Cases[x1-1][y1+1] == -1) Buffer++;
                         if(Cases[x1][y1+1] == -1) Buffer++;
                     }
                     else{
-                        if(Cases[x1-1][y1] == -1) Buffer++;
-                        if(Cases[x1-1][y1+1] == -1) Buffer++;
+                        if(Cases[x1+1][y1] == -1) Buffer++;
+                        if(Cases[x1+1][y1+1] == -1) Buffer++;
                         if(Cases[x1][y1+1] == -1) Buffer++;
                         if(Cases[x1-1][y1] == -1) Buffer++;
                         if(Cases[x1-1][y1+1] == -1) Buffer++;
                     }
                 }
-                else if(x1 == X-1){
+                else if(x1 == X){
                     if(y1 == 0){
                         if(Cases[x1+1][y1] == -1) Buffer++;
                         if(Cases[x1+1][y1-1] == -1) Buffer++;
                         if(Cases[x1][y1-1] == -1) Buffer++;
                     }
-                    if(y1 == Y-1){
+                   else if(y1 == Y){
                         if(Cases[x1-1][y1] == -1) Buffer++;
                         if(Cases[x1-1][y1+1] == -1) Buffer++;
                         if(Cases[x1][y1+1] == -1) Buffer++;
@@ -89,18 +90,31 @@ public class Frame extends JFrame {
                 }
                 else{
                     if(y1 ==0){
+                        if(Cases[x1+1][y1] == -1) Buffer++;
+                        if(Cases[x1+1][y1-1] == -1) Buffer++;
+                        if(Cases[x1+1][y1+1] == -1) Buffer++;
+                        if(Cases[x1][y1+1] == -1) Buffer++;
+                        if(Cases[x1][y1-1] == -1) Buffer++;
+                    }
+                    else if(y1 == Y){
                         if(Cases[x1-1][y1] == -1) Buffer++;
+                        if(Cases[x1-1][y1-1] == -1) Buffer++;
                         if(Cases[x1-1][y1+1] == -1) Buffer++;
                         if(Cases[x1][y1+1] == -1) Buffer++;
-
-                    }
-                    if(y1 == Y-1){
-
+                        if(Cases[x1][y1-1] == -1) Buffer++;
                     }
                     else{
-
+                        if(Cases[x1+1][y1] == -1) Buffer++;
+                        if(Cases[x1+1][y1-1] == -1) Buffer++;
+                        if(Cases[x1+1][y1+1] == -1) Buffer++;
+                        if(Cases[x1][y1+1] == -1) Buffer++;
+                        if(Cases[x1][y1-1] == -1) Buffer++;
+                        if(Cases[x1-1][y1] == -1) Buffer++;
+                        if(Cases[x1-1][y1-1] == -1) Buffer++;
+                        if(Cases[x1-1][y1+1] == -1) Buffer++;
                     }
                 }
+                Cases[x1][y1] = Buffer;
             }
             }
         }
