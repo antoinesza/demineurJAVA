@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.*;
 
 import javax.swing.ImageIcon;
@@ -23,10 +25,10 @@ public class Panel extends JPanel {
                         if(Frame.Cases[x][y] == 5) g.setColor(new Color(255, 200, 0));
                         if(Frame.Cases[x][y] == 6) g.setColor(new Color(255, 255, 0));
                         if(Frame.Cases[x][y] == 7) g.setColor(new Color(120, 120, 120));
-                        if(Frame.Cases[x][y] == 8) g.setColor(new Color(0, 0, 0));
+                        if(Frame.Cases[x][y] == 8) g.setColor(new Color(87, 87, 87));
                     }
                     g.setFont(new Font("Baby Kruffy", Font.PLAIN, 20));
-                    g.setColor(new Color (0, 0, 0));
+                    g.setColor(new Color (255, 255, 255));
                     g.drawString(Integer.toString(Frame.Cases[x][y]), x*20+4, y*20+18);
                 }
             }
