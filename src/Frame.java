@@ -59,10 +59,26 @@ public class Frame extends JFrame {
                     }
                 }
                 else if(x1 == X-1){
+                    if(y1 == 0){
 
+                    }
+                    if(y1 == Y-1){
+
+                    }
+                    else{
+
+                    }
                 }
                 else{
+                    if(y1 ==0){
 
+                    }
+                    if(y1 == Y-1){
+
+                    }
+                    else{
+
+                    }
                 }
             }
         }
