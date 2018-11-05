@@ -22,6 +22,7 @@ public class Frame extends JFrame {
             int Buffer = TimerThread.MILLI;
 
 
+
             panel.repaint();
 
             if((TimerThread.MILLI - Buffer) < FrameRate){
@@ -35,12 +36,33 @@ public class Frame extends JFrame {
      }
 
      public static void generate(int X, int Y, int size, int pourcent){
-        Frame.x = X;
+        x = X;
         y = Y;
-        for(int x1 = 0; x1 < Frame.x; x1++){
+        for(int x1 = 0; x1 < x; x1++){
             for(int y1 = 0; y1 < Y; y1++){
                 if(Math.random()*100 < pourcent){
                     Cases[x1][y1] = -1;
+                }
+            }
+        }
+        for(int x1 =0; x1 < X; x1++){
+            for(int y1 = 0; y1 < Y; y1++){
+                if(x1 ==0){
+                    if(y1 == 0){
+
+                    }
+                    if(y1 == Y-1){
+
+                    }
+                    else{
+
+                    }
+                }
+                else if(x1 == X-1){
+
+                }
+                else{
+
                 }
             }
         }
