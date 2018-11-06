@@ -2,10 +2,13 @@ import javax.swing.JFrame;
 
 
 public class Frame extends JFrame {
+    public static int Cursor[] = new int[2];
+    public static boolean onScreen = false;
     public  static int Cases[][] = new int[1000][1000];
     public  static boolean Hidden[][] = new boolean[1000][1000];
     public static int x = 64;
     public static int y = 36;
+    public static int Size = 0;
     public static int Colors = 1;
     static Panel panel = new Panel();
     static int FrameRate = 12;
@@ -22,8 +25,12 @@ public class Frame extends JFrame {
      public static void GameTrame(){
         while(true){
             int Buffer = TimerThread.MILLI;
-
-
+            onScreen = false;
+            if(Panel.mouseX > 0 && Panel.mouseX < x*Size && Panel.mouseY > 0 && Panel.mouseY < y*Size){
+                onScreen = true;
+                Cursor[0] = Panel.mouseX/Size;
+                Cursor[1] = Panel.mouseY/Size;
+            }
 
             panel.repaint();
 
@@ -37,6 +44,7 @@ public class Frame extends JFrame {
      public static void generate(int X, int Y, int size, int pourcent){
         x = X;
         y = Y;
+        Size = size;
         for(int x1 = 0; x1 < x; x1++){
             for(int y1 = 0; y1 < Y; y1++){
                 Hidden[x1][y1] = true;
