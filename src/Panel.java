@@ -1,6 +1,4 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Font;
+import java.awt.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -31,7 +29,10 @@ public class Panel extends JPanel {
                     g.drawString(Integer.toString(Frame.Cases[x][y]), x*20+4, y*20+18);
                 }
                 if(Frame.Hidden[x][y]){
+                    Graphics2D g2d = (Graphics2D) g;
+                    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .8F));
                     g.drawImage(new ImageIcon("caseN.png").getImage(), x*20, y*20, null);
+                    
                 }
             }
         }
