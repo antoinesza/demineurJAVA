@@ -147,6 +147,9 @@ public class Frame extends JFrame {
             finish = true;
             won = false;
         }
+        else if(Cases[x1][y1] > 0){
+            Hidden[x1][y1] = false;
+        }
      }
 }
 
