@@ -10,7 +10,10 @@ public class Frame extends JFrame {
     public static int y = 36;
     public static int Size = 0;
     public static int Colors = 1;
+    public static Boolean finish = false;
+    public static boolean won = false;
     static Panel panel = new Panel();
+    static mouseListener ml = new mouseListener();
     static int FrameRate = 12;
     public Frame(String title){
         this.setVisible(true);
@@ -19,6 +22,7 @@ public class Frame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle(title);
         this.setContentPane(panel);
+        this.addMouseListener(ml);
         generate(64, 36, 20, 12);
         GameTrame();}
 
@@ -30,7 +34,13 @@ public class Frame extends JFrame {
                 onScreen = true;
                 Cursor[0] = Panel.mouseX/Size;
                 Cursor[1] = Panel.mouseY/Size;
+                if(ml.Left && !finish){
+                    delete(Cursor[0], Cursor[1]);
+                }
             }
+
+            if(ml.Left) ml.Left = false;
+            if(ml.Right) ml.Right = false;
 
             panel.repaint();
 
@@ -125,6 +135,17 @@ public class Frame extends JFrame {
                 Cases[x1][y1] = Buffer;
             }
             }
+        }
+     }
+     public static void delete(int x1, int y1){
+        if(Cases[x1][y1] == -1){
+            for(int X = 0; X < x; X++){
+                for(int Y = 0; Y < y; Y++){
+                    Hidden[X][Y] = false;
+                }
+            }
+            finish = true;
+            won = false;
         }
      }
 }
