@@ -3,6 +3,7 @@ import javax.swing.JFrame;
 
 public class Frame extends JFrame {
     public  static int Cases[][] = new int[1000][1000];
+    public  static boolean Hidden[][] = new boolean[1000][1000];
     public static int x = 64;
     public static int y = 36;
     public static int Colors = 1;
@@ -27,11 +28,8 @@ public class Frame extends JFrame {
             panel.repaint();
 
             if((TimerThread.MILLI - Buffer) < FrameRate){
-                try {
-                    Thread.sleep(FrameRate - (TimerThread.MILLI - Buffer));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                try { Thread.sleep(FrameRate - (TimerThread.MILLI - Buffer)); }
+                catch (InterruptedException e) {e.printStackTrace();}
             }
         }
      }
@@ -41,6 +39,7 @@ public class Frame extends JFrame {
         y = Y;
         for(int x1 = 0; x1 < x; x1++){
             for(int y1 = 0; y1 < Y; y1++){
+                Hidden[x1][y1] = true;
                 if(Math.random()*100 < pourcent){
                     Cases[x1][y1] = -1;
                 }

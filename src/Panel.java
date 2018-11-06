@@ -1,6 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.*;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -12,7 +12,7 @@ public class Panel extends JPanel {
         g.fillRect(0, 0, getSize().width, getSize().height);
         for(int x = 0; x < Frame.x; x++ ){
             for(int y = 0; y < Frame.y; y++ ){
-                g.drawImage(new ImageIcon("caseN.png").getImage(), x*20, y*20, null);
+                g.drawImage(new ImageIcon("case.png").getImage(), x*20, y*20, null);
                 if(Frame.Cases[x][y] == -1){
                     g.drawImage(new ImageIcon("-1.png").getImage(),x*20, y*20,null);
                 }
@@ -25,11 +25,13 @@ public class Panel extends JPanel {
                         if(Frame.Cases[x][y] == 5) g.setColor(new Color(255, 200, 0));
                         if(Frame.Cases[x][y] == 6) g.setColor(new Color(255, 255, 0));
                         if(Frame.Cases[x][y] == 7) g.setColor(new Color(120, 120, 120));
-                        if(Frame.Cases[x][y] == 8) g.setColor(new Color(87, 87, 87));
+                        if(Frame.Cases[x][y] == 8) g.setColor(new Color(0, 0, 0));
                     }
                     g.setFont(new Font("Baby Kruffy", Font.PLAIN, 20));
-                    g.setColor(new Color (255, 255, 255));
                     g.drawString(Integer.toString(Frame.Cases[x][y]), x*20+4, y*20+18);
+                }
+                if(Frame.Hidden[x][y]){
+                    g.drawImage(new ImageIcon("caseN.png").getImage(), x*20, y*20, null);
                 }
             }
         }
