@@ -34,9 +34,9 @@ public class Panel extends JPanel {
                 }
                 if(Frame.Hidden[x][y]){
                     Graphics2D g2d = (Graphics2D) g;
-                    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .8F));
+                   // g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .8F));
                     g.drawImage(new ImageIcon("caseN.png").getImage(), x*Frame.Size, y*Frame.Size, null);
-                    //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .1F));
+                    //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .8F));
                 }
             }
         }
