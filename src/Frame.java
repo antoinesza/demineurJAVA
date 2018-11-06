@@ -158,31 +158,43 @@ public class Frame extends JFrame {
 
                 System.out.println(Size);
                 for (int s = 0; s < Size; s++) {
+
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    panel.repaint();
                     if (Hidden[Buffer[s][0]][Buffer[s][1]]) {
                         if (Cases[Buffer[s][0]][Buffer[s][1]] != 0) {
                             Hidden[Buffer[s][0]][Buffer[s][1]] = false;
                         } else {
                             Hidden[Buffer[s][0]][Buffer[s][1]] = false;
-                            if (Buffer[s][0] > 0) {
+                            if (Buffer[s][0] > 0){
+                                if(Hidden[Buffer[s][0]-1][Buffer[s][1]]){
                                 Buffer2[size][0] = Buffer[s][0] - 1;
                                 Buffer2[size][1] = Buffer[s][1];
                                 size++;
-                            }
+                            }}
                             if (Buffer[s][0] < x) {
+                                if(Hidden[Buffer[s][0]+1][Buffer[s][1]]){
                                 Buffer2[size][0] = Buffer[s][0] + 1;
                                 Buffer2[size][1] = Buffer[s][1];
                                 size++;
-                            }
+                            }}
                             if (Buffer[s][1] > 0) {
+                                if(Hidden[Buffer[s][0]][Buffer[s][1]-1]){
                                 Buffer2[size][0] = Buffer[s][0];
                                 Buffer2[size][1] = Buffer[s][1] - 1;
                                 size++;
-                            }
+                            }}
                             if (Buffer[s][1] < y) {
+
+                                if(Hidden[Buffer[s][0]][Buffer[s][1]+1]){
                                 Buffer2[size][0] = Buffer[s][0];
                                 Buffer2[size][1] = Buffer[s][1] + 1;
                                 size++;
-                            }
+                            }}
                         }
                     }
                 }
