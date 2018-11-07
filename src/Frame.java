@@ -30,7 +30,7 @@ public class Frame extends JFrame {
         this.setTitle(title);
         this.setContentPane(panel);
         this.addMouseListener(ml);
-        generate(64, 36, 20, 1);
+        generate(20, 10, 20, 4);
         GameTrame();
     }
 
@@ -46,7 +46,7 @@ public class Frame extends JFrame {
                     delete(Cursor[0], Cursor[1]);
                 }
                 if (ml.Right && !finish && Hidden[Cursor[0]][Cursor[1]]){
-                    Flag(Cursor[0], Cursor[1]);}
+                    Flag();}
             }
 
             if (ml.Left) ml.Left = false;
@@ -246,18 +246,26 @@ public class Frame extends JFrame {
 
     }
 
-    public static void Flag(int x, int y){
+    public static void Flag(){
+        if(!Flags[Cursor[0]][Cursor[1]]){
         Flags[Cursor[0]][Cursor[1]] = true;
-        Flag++;
+        Flag++;}
+        else{
+            Flags[Cursor[0]][Cursor[1]] = false;
+            Flag--;}
         if(Flag == Bombs){
             Boolean cond = true;
-            for(int i =0; i < x; i++){
-                for(int j =0; j < y; j++){
+            System.out.println(x+"; "+y);
+            for(int i = 0; i < x; i++){
+                for(int j = 0; j < y; j++){
+                    System.out.println(j+"; "+i);
                     if(Flags[i][j]){
+                        System.out.println(" = flag");
                         if(Cases[i][j] != -1){
                             cond = false;
                         }
                     }
+                    System.out.println();
                 }
             }
             if(cond){
