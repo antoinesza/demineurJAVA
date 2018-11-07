@@ -1,8 +1,0 @@
-gagné = false
-bombes = 26
-trouvées = 0
-drapeaux = 0
-cases = 576
-découvertes = 0
-3/7/13
-18:42

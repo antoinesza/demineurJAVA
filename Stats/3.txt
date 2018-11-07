@@ -1,8 +1,0 @@
-gagné = false
-bombes = 43
-trouvées = 0
-drapeaux = 0
-cases = 576
-découvertes = 314
-1/10/18
-15:24
