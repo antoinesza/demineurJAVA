@@ -48,6 +48,13 @@ public class Panel extends JPanel {
                 }
             }
         }
+        if(Frame.finish){
+            if(Frame.won) {
+                g.setFont(new Font("Baby Kruffy", Font.PLAIN, 100));
+                g.setColor(new Color(0, 255, 0));
+             g.drawString("YOU WIN !", 400, 320);
+            }
+        }
         if(Frame.onScreen){
             g.setColor(new Color(0, 0, 0, 150));
             g.fillRect(Frame.Cursor[0]*Frame.Size, Frame.Cursor[1]*Frame.Size, Frame.Size , Frame.Size );
