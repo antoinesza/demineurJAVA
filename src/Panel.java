@@ -39,7 +39,12 @@ public class Panel extends JPanel {
                     //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .1F));
                 }
                 if(Frame.Flags[x][y]){
-                    g.drawImage(new ImageIcon("flag.png").getImage(), x*Frame.Size, y*Frame.Size, null);
+                    if(!Frame.finish){
+                        g.drawImage(new ImageIcon("flag.png").getImage(), x*Frame.Size, y*Frame.Size, null);}
+                    else if(Frame.Cases[x][y] == -1){
+                        g.drawImage(new ImageIcon("flagT.png").getImage(), x*Frame.Size, y*Frame.Size, null);
+                    }
+                    else g.drawImage(new ImageIcon("flag.png").getImage(), x*Frame.Size, y*Frame.Size, null);
                 }
             }
         }
