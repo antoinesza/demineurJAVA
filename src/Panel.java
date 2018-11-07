@@ -36,7 +36,10 @@ public class Panel extends JPanel {
                     Graphics2D g2d = (Graphics2D) g;
                    // g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .8F));
                     g.drawImage(new ImageIcon("caseN.png").getImage(), x*Frame.Size, y*Frame.Size, null);
-                    //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .8F));
+                    //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .1F));
+                }
+                if(Frame.Flags[x][y]){
+                    g.drawImage(new ImageIcon("flag.png").getImage(), x*Frame.Size, y*Frame.Size, null);
                 }
             }
         }

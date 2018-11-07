@@ -7,6 +7,7 @@ public class Frame extends JFrame {
     public static boolean onScreen = false;
     public static int Cases[][] = new int[1000][1000];
     public static boolean Hidden[][] = new boolean[1000][1000];
+    public static boolean Flags[][] = new boolean[1000][1000];
     public static int x = 64;
     public static int y = 36;
     public static int Size = 0;
@@ -37,8 +38,11 @@ public class Frame extends JFrame {
                 onScreen = true;
                 Cursor[0] = Panel.mouseX / Size;
                 Cursor[1] = Panel.mouseY / Size;
-                if (ml.Left && !finish) {
+                if (ml.Left && !finish && Hidden[Cursor[0]][Cursor[1]]){
                     delete(Cursor[0], Cursor[1]);
+                }
+                if (ml.Right && !finish && Hidden[Cursor[0]][Cursor[1]]){
+                    Flags[Cursor[0]][Cursor[1]] = true;
                 }
             }
 
@@ -186,8 +190,10 @@ public class Frame extends JFrame {
                     panel.repaint();
                     if (Hidden[Buffer[s][0]][Buffer[s][1]]) {
                         if (Cases[Buffer[s][0]][Buffer[s][1]] != 0) {
+                            Flags[Buffer[s][0]][Buffer[s][1]] = false;
                             Hidden[Buffer[s][0]][Buffer[s][1]] = false;
                         } else {
+                            Flags[Buffer[s][0]][Buffer[s][1]] = false;
                             Hidden[Buffer[s][0]][Buffer[s][1]] = false;
                             if (Buffer[s][0] > 0){
                                 if(Hidden[Buffer[s][0]-1][Buffer[s][1]]){
