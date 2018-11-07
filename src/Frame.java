@@ -3,6 +3,10 @@ import java.nio.Buffer;
 
 
 public class Frame extends JFrame {
+
+    public static int Discovered = 0;
+    public static int Flag = 0;
+    public static int Bombs = 0;
     public static int Cursor[] = new int[2];
     public static boolean onScreen = false;
     public static int Cases[][] = new int[1000][1000];
@@ -26,7 +30,7 @@ public class Frame extends JFrame {
         this.setTitle(title);
         this.setContentPane(panel);
         this.addMouseListener(ml);
-        generate(64, 36, 20, 9);
+        generate(64, 36, 20, 1);
         GameTrame();
     }
 
@@ -42,8 +46,7 @@ public class Frame extends JFrame {
                     delete(Cursor[0], Cursor[1]);
                 }
                 if (ml.Right && !finish && Hidden[Cursor[0]][Cursor[1]]){
-                    Flags[Cursor[0]][Cursor[1]] = true;
-                }
+                    Flag(Cursor[0], Cursor[1]);}
             }
 
             if (ml.Left) ml.Left = false;
@@ -70,6 +73,7 @@ public class Frame extends JFrame {
                 Hidden[x1][y1] = true;
                 if (Math.random() * 100 < pourcent) {
                     Cases[x1][y1] = -1;
+                    Bombs++;
                 }
             }
         }
@@ -151,7 +155,9 @@ public class Frame extends JFrame {
             won = false;
         } else if (Cases[x1][y1] > 0) {
             Hidden[x1][y1] = false;
-        } else if (Cases[x1][y1] == 0) {
+            Discovered++;
+        }
+        else if (Cases[x1][y1] == 0) {
             int Buffer[][] = new int[100000][2];
             int Size = 1;
             Buffer[0][0] = x1;
@@ -190,11 +196,18 @@ public class Frame extends JFrame {
                     panel.repaint();
                     if (Hidden[Buffer[s][0]][Buffer[s][1]]) {
                         if (Cases[Buffer[s][0]][Buffer[s][1]] != 0) {
-                            Flags[Buffer[s][0]][Buffer[s][1]] = false;
+                            if(Flags[Buffer[s][0]][Buffer[s][1]]) {
+                                Flags[Buffer[s][0]][Buffer[s][1]] = false;
+                            Flag--;}
                             Hidden[Buffer[s][0]][Buffer[s][1]] = false;
+                            Discovered++;
                         } else {
-                            Flags[Buffer[s][0]][Buffer[s][1]] = false;
+                            if(Flags[Buffer[s][0]][Buffer[s][1]]) {
+                                Flags[Buffer[s][0]][Buffer[s][1]] = false;
+                                Flag--;}
                             Hidden[Buffer[s][0]][Buffer[s][1]] = false;
+                            Discovered++;
+
                             if (Buffer[s][0] > 0){
                                 if(Hidden[Buffer[s][0]-1][Buffer[s][1]]){
                                 Buffer2[size][0] = Buffer[s][0] - 1;
@@ -231,5 +244,26 @@ public class Frame extends JFrame {
             }
         }
 
+    }
+
+    public static void Flag(int x, int y){
+        Flags[Cursor[0]][Cursor[1]] = true;
+        Flag++;
+        if(Flag == Bombs){
+            Boolean cond = true;
+            for(int i =0; i < x; i++){
+                for(int j =0; j < y; j++){
+                    if(Flags[i][j]){
+                        if(Cases[i][j] != -1){
+                            cond = false;
+                        }
+                    }
+                }
+            }
+            if(cond){
+                finish = true;
+                won = true;
+            }
+        }
     }
 }
