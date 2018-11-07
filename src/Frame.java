@@ -153,6 +153,25 @@ public class Frame extends JFrame {
             Buffer[0][0] = x1;
             Buffer[0][1] = y1;
             while (Size > 0) {
+                int buffer = TimerThread.MILLI;
+                onScreen = false;
+                if (Panel.mouseX > 0 && Panel.mouseX < x * Size && Panel.mouseY > 0 && Panel.mouseY < y * Size) {
+                    onScreen = true;
+                    Cursor[0] = Panel.mouseX / Size;
+                    Cursor[1] = Panel.mouseY / Size;
+                }
+                if (ml.Left) ml.Left = false;
+                if (ml.Right) ml.Right = false;
+
+                panel.repaint();
+
+                if ((TimerThread.MILLI - buffer) < FrameRate) {
+                    try {
+                        Thread.sleep(FrameRate - (TimerThread.MILLI - buffer));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
                 int Buffer2[][] = new int[100000][2];
                 int size = 0;
 
