@@ -31,6 +31,7 @@ public class Frame extends JFrame {
         this.setContentPane(panel);
         this.addMouseListener(ml);
         generate(20, 10, 20, 4);
+       //generate(64, 36, 20, 1);
         GameTrame();
     }
 
