@@ -52,7 +52,7 @@ public class Panel extends JPanel {
             if(Frame.won) {
                 g.setFont(new Font("Baby Kruffy", Font.PLAIN, 100));
                 g.setColor(new Color(0, 255, 0));
-             g.drawString("YOU WIN !", 400, 320);
+             g.drawString(" §§ ! YOU WIN ! §§", 400, 320);
             }
         }
         if(Frame.onScreen){
