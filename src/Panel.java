@@ -20,11 +20,11 @@ public class Panel extends JPanel {
                 }
                 else if(Frame.Cases[x][y] > 0) {
                     if(Frame.Colors == 1){
-                        if(Frame.Cases[x][y] == 1) g.setColor(new Color(255, 0, 0));
-                        if(Frame.Cases[x][y] == 2) g.setColor(new Color(255, 50, 0));
-                        if(Frame.Cases[x][y] == 3) g.setColor(new Color(255, 100, 0));
-                        if(Frame.Cases[x][y] == 4) g.setColor(new Color(255, 150, 0));
-                        if(Frame.Cases[x][y] == 5) g.setColor(new Color(255, 200, 0));
+                        if(Frame.Cases[x][y] == 1) g.setColor(new Color(0, 39, 255));
+                        if(Frame.Cases[x][y] == 2) g.setColor(new Color(34, 166, 0));
+                        if(Frame.Cases[x][y] == 3) g.setColor(new Color(209, 2, 0));
+                        if(Frame.Cases[x][y] == 4) g.setColor(new Color(0, 40, 157));
+                        if(Frame.Cases[x][y] == 5) g.setColor(new Color(128, 0, 9));
                         if(Frame.Cases[x][y] == 6) g.setColor(new Color(255, 255, 0));
                         if(Frame.Cases[x][y] == 7) g.setColor(new Color(120, 120, 120));
                         if(Frame.Cases[x][y] == 8) g.setColor(new Color(0, 0, 0));
