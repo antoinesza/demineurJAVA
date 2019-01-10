@@ -16,6 +16,8 @@ public class Engine {
 		this.positionOfTheUncoveredBoxOnTheCheckerboard = new boolean[horizontalBoxNumber][verticalBoxNumber];
 		this.positionOfTheFlagsOnTheCheckerboard = new boolean[horizontalBoxNumber][verticalBoxNumber];
 		this.Generate(horizontalBoxNumber, verticalBoxNumber, 50);
+		this.numberOfBombsGenerated = 0;
+		this.numberOfFlagsPosed = 0;
 	}
 	
 	//Retourne true si aucune bombe a explosé
@@ -75,7 +77,12 @@ public class Engine {
 	private void Generate(int horizontalBoxNumber, int verticalBoxNumber, int bombsPercentage) {      
 		for (int horizontalIterator = 0; horizontalIterator < this.positionOfTheBombsOnTheCheckerboard.length; horizontalIterator++) {
 			for (int verticalIterator = 0; verticalIterator < this.positionOfTheBombsOnTheCheckerboard.length; verticalIterator++) {
-				this.positionOfTheBombsOnTheCheckerboard[horizontalIterator][verticalIterator] = Math.random() * 100 < bombsPercentage;
+				this.positionOfTheBombsOnTheCheckerboard[horizontalIterator][verticalIterator] = false;
+				if (Math.random() * 100 < bombsPercentage) {
+					this.positionOfTheBombsOnTheCheckerboard[horizontalIterator][verticalIterator] = true;
+					this.numberOfBombsGenerated++;
+					
+				}
 			}
 		}
     }
