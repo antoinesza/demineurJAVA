@@ -20,7 +20,8 @@ public class Main {
 					break;  
 				
 				case "console":
-					System.out.println("Hello world!");
+					new ConsoleSocket();
+					str = "quitter";
 					break;
         	}
         }while(!str.equals("quitter"));
