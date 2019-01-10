@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class ConsoleSocket {
 	private Engine demineur;
 	private int horizontalHeight;
-	private int verticalHeight;	
+	private int verticalHeight;
+	private Scanner scanner = new Scanner(System.in);
 	
 	public ConsoleSocket() {
 		this.horizontalHeight = 10;
@@ -15,10 +16,9 @@ public class ConsoleSocket {
 	}
 	
 	private void run() {
-		Scanner scanner = new Scanner(System.in);
 		String saisi;
-		String line = "  ";
 		do {
+			String line = "  ";
 			String[][] checkerboard = this.buildTheCheckerboard();
 			for (int iterator = 0; iterator < this.verticalHeight; iterator++) {
 				line += iterator + " ";
@@ -37,10 +37,27 @@ public class ConsoleSocket {
 			
 			System.out.println("Pour découvrir une case taper : 'case'.");
 			System.out.println("Pour poser un drapeau taper : 'poser'.");
-			System.out.println("Pour poser un drapeau taper : 'retirer'.");
+			System.out.println("Pour retirer un drapeau taper : 'retirer'.");
 			System.out.println("Pour quitter taper : 'quitter'.");
-			saisi = scanner.nextLine();			
+			saisi = scanner.nextLine();	
+			this.interpretationOfTheUserInput(saisi);
+			
 		} while (!saisi.equals("quitter"));
+	}
+	
+	private void interpretationOfTheUserInput(String saisi) {
+		switch (saisi) {
+		case "case":
+			System.out.println("Sélectionner le numéro de la ligne horizontal.");
+				int horizontalHeight = scanner.nextInt();
+				scanner.nextLine();
+			System.out.println("Sélectionner le numéro de la ligne vertical.");
+				int verticalHeight = scanner.nextInt();
+				scanner.nextLine();
+			
+			demineur.discoverTheBox(horizontalHeight, verticalHeight);
+			break;
+		}
 	}
 	
 	private String[][] buildTheCheckerboard() {
@@ -59,7 +76,12 @@ public class ConsoleSocket {
 		String value = this.demineur.getBoxType(horizontalBox, verticalBox);
 		if (value.equals("flagged")) symbol = "F";
 		if (value.equals("covered")) symbol = "-";
-		if (value.equals("discovered")) symbol = " ";
+		if (value.equals("discovered")) {
+			symbol = String.valueOf(this.demineur.getBoxValue(horizontalBox, verticalBox));
+			if (symbol.equals("0")) {
+				symbol = " ";
+			}
+		}
 		if (value.equals("bomb")) symbol = "B";
 		
 		return symbol;

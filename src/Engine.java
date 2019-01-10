@@ -15,7 +15,7 @@ public class Engine {
 		this.positionOfTheBombsOnTheCheckerboard = new boolean[horizontalBoxNumber][verticalBoxNumber];
 		this.positionOfTheUncoveredBoxOnTheCheckerboard = new boolean[horizontalBoxNumber][verticalBoxNumber];
 		this.positionOfTheFlagsOnTheCheckerboard = new boolean[horizontalBoxNumber][verticalBoxNumber];
-		this.Generate(horizontalBoxNumber, verticalBoxNumber, 50);
+		this.Generate(horizontalBoxNumber, verticalBoxNumber, 30);
 		this.numberOfBombsGenerated = 0;
 		this.numberOfFlagsPosed = 0;
 	}
@@ -62,12 +62,17 @@ public class Engine {
 	
 	//Retourne le type de la boite
 	public String getBoxType(int horizontalBox, int verticalBox) {
+	
 		if (getBoxValueOfFlagCheckerboard(horizontalBox, verticalBox)) {
 			return "flagged";
 		}
 		
-		if (!getBoxValueOfUncoversCheckerboard(horizontalBox, verticalBox)) {
+		if (!getBoxValueOfUncoversCheckerboard(horizontalBox, verticalBox) && !this.endOfGame) {
 			return "covered";
+		}
+		
+		if (this.getBoxValueOfBombsCheckerboard(horizontalBox, verticalBox)) {
+			return "bomb";
 		}
 		
 		return "discovered";
@@ -90,8 +95,8 @@ public class Engine {
 	
 	//Retourne true si c'est une bombe
 	private boolean getBombBoxType(int horizontalBox, int verticalBox) {
-		if(this.positionOfTheBombsOnTheCheckerboard.length >= horizontalBox) {
-			if(this.positionOfTheBombsOnTheCheckerboard[horizontalBox].length >= verticalBox) {
+		if(this.positionOfTheBombsOnTheCheckerboard.length > horizontalBox && 0 <= horizontalBox) {
+			if(this.positionOfTheBombsOnTheCheckerboard[horizontalBox].length > verticalBox && 0 <= verticalBox) {
 				return this.positionOfTheBombsOnTheCheckerboard[horizontalBox][verticalBox];
 			}
 		}
@@ -114,7 +119,13 @@ public class Engine {
     }
 	
 	private boolean getBoxValueOfBombsCheckerboard(int horizontalBox, int verticalBox) {
-		return this.positionOfTheBombsOnTheCheckerboard[horizontalBox][verticalBox];
+		if (this.positionOfTheBombsOnTheCheckerboard.length > horizontalBox) {
+			if (this.positionOfTheBombsOnTheCheckerboard[horizontalBox].length > verticalBox) {
+				return this.positionOfTheBombsOnTheCheckerboard[horizontalBox][verticalBox];				
+			}
+		}
+		
+		return false;
 	}
 	
 	private boolean getBoxValueOfUncoversCheckerboard(int horizontalBox, int verticalBox) {
