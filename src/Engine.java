@@ -73,6 +73,32 @@ public class Engine {
 		return "discovered";
 	}
 	
+	//Retourne la valeur la case
+	public int getBoxValue(int horizontalBox, int verticalBox) {
+		int buffer = 0;
+		if (this.getBombBoxType(horizontalBox + 1, verticalBox)) buffer++;
+		if (this.getBombBoxType(horizontalBox + 1, verticalBox + 1)) buffer++;
+		if (this.getBombBoxType(horizontalBox + 1, verticalBox - 1)) buffer++;
+		if (this.getBombBoxType(horizontalBox, verticalBox + 1)) buffer++;
+		if (this.getBombBoxType(horizontalBox, verticalBox - 1)) buffer++;
+		if (this.getBombBoxType(horizontalBox - 1, verticalBox)) buffer++;
+		if (this.getBombBoxType(horizontalBox - 1, verticalBox + 1)) buffer++;
+		if (this.getBombBoxType(horizontalBox - 1, verticalBox - 1)) buffer++;
+		
+		return buffer;
+	}
+	
+	//Retourne true si c'est une bombe
+	private boolean getBombBoxType(int horizontalBox, int verticalBox) {
+		if(this.positionOfTheBombsOnTheCheckerboard.length >= horizontalBox) {
+			if(this.positionOfTheBombsOnTheCheckerboard[horizontalBox].length >= verticalBox) {
+				return this.positionOfTheBombsOnTheCheckerboard[horizontalBox][verticalBox];
+			}
+		}
+		
+		return false;
+	}
+	
 	//Génère le damier du démineur
 	private void Generate(int horizontalBoxNumber, int verticalBoxNumber, int bombsPercentage) {      
 		for (int horizontalIterator = 0; horizontalIterator < this.positionOfTheBombsOnTheCheckerboard.length; horizontalIterator++) {
