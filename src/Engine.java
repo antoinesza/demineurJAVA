@@ -26,6 +26,7 @@ public class Engine {
 			return true;
 		}
 		
+		this.endOfGame = true;
 		return false;
 	}
 	
@@ -33,6 +34,9 @@ public class Engine {
 	public boolean putTheFlag(int horizontalBox, int verticalBox) {
 		if (!this.getBoxValueOfUncoversCheckerboard(horizontalBox, verticalBox)) {
 			this.positionOfTheFlagsOnTheCheckerboard[horizontalBox][verticalBox] = true;
+			if (this.getBoxValueOfBombsCheckerboard(horizontalBox, verticalBox)) {
+				this.numberOfFlagsPosed++;
+			}
 			
 			return true;
 		}
@@ -44,6 +48,9 @@ public class Engine {
 	public boolean removeTheFlag(int horizontalBox, int verticalBox) {
 		if (this.getBoxValueOfUncoversCheckerboard(horizontalBox, verticalBox)) {
 			this.positionOfTheFlagsOnTheCheckerboard[horizontalBox][verticalBox] = false;
+			if (this.getBoxValueOfBombsCheckerboard(horizontalBox, verticalBox)) {
+				this.numberOfFlagsPosed--;
+			}
 			
 			return true;
 		}
