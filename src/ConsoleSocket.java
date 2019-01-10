@@ -6,9 +6,10 @@ public class ConsoleSocket {
 	private int verticalHeight;	
 	
 	public ConsoleSocket() {
-		this.demineur = new Engine(50, 50);
-		this.horizontalHeight = 50;
-		this.verticalHeight = 50;
+		this.horizontalHeight = 10;
+		this.verticalHeight = 10;
+		this.demineur = new Engine(this.horizontalHeight, this.verticalHeight);
+		
 		
 		this.run();
 	}
@@ -16,13 +17,22 @@ public class ConsoleSocket {
 	private void run() {
 		Scanner scanner = new Scanner(System.in);
 		String saisi;
+		String line = "  ";
 		do {
 			String[][] checkerboard = this.buildTheCheckerboard();
+			for (int iterator = 0; iterator < this.verticalHeight; iterator++) {
+				line += iterator + " ";
+			}
+			System.out.println(line);
+			line = "";
+			
 			for (int horizontalIterator = 0; horizontalIterator < checkerboard.length; horizontalIterator++) {
+				line += horizontalIterator + " ";
 				for (int verticalIterator = 0; verticalIterator < checkerboard[horizontalIterator].length; verticalIterator++) {
-					System.out.println(checkerboard[horizontalIterator][verticalIterator]);
-					System.out.println("\n");
+					line += checkerboard[horizontalIterator][verticalIterator] + " ";
 				}
+				System.out.println(line);
+				line = "";
 			}
 			
 			System.out.println("Pour découvrir une case taper : 'case'.");
@@ -34,7 +44,7 @@ public class ConsoleSocket {
 	}
 	
 	private String[][] buildTheCheckerboard() {
-		String[][] checkerboard;
+		String[][] checkerboard = new String[this.horizontalHeight][this.verticalHeight];;
 		for (int horizontalIterator = 0; horizontalIterator < this.horizontalHeight; horizontalIterator++) {
 			for (int verticalIterator = 0; verticalIterator < this.verticalHeight; verticalIterator++) {
 				checkerboard[horizontalIterator][verticalIterator] = transformsValueIntoSymbol(horizontalIterator, verticalIterator);

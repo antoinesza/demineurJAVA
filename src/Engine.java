@@ -66,7 +66,7 @@ public class Engine {
 			return "flagged";
 		}
 		
-		if (getBoxValueOfUncoversCheckerboard(horizontalBox, verticalBox)) {
+		if (!getBoxValueOfUncoversCheckerboard(horizontalBox, verticalBox)) {
 			return "covered";
 		}
 		
