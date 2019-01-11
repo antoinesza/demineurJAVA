@@ -40,6 +40,9 @@ public class Engine {
 			this.positionOfTheFlagsOnTheCheckerboard[horizontalBox][verticalBox] = true;
 			if (this.getBoxValueOfBombsCheckerboard(horizontalBox, verticalBox)) {
 				this.numberOfFlagsPosed++;
+				if (this.numberOfFlagsPosed == this.numberOfBombsGenerated) {
+					this.endOfGame = true;
+				}
 			}
 			
 			return true;
