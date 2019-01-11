@@ -22,13 +22,15 @@ public class Engine {
 	
 	//Retourne true si aucune bombe a explosé
 	public boolean discoverTheBox(int horizontalBox, int verticalBox) {
-		if (!this.getBoxValueOfBombsCheckerboard(horizontalBox, verticalBox)) {
-			this.positionOfTheUncoveredBoxOnTheCheckerboard[horizontalBox][verticalBox] = true;
+		if (!this.getBoxValueOfFlagCheckerboard(horizontalBox, verticalBox)) {
+			if (!this.getBoxValueOfBombsCheckerboard(horizontalBox, verticalBox)) {
+				this.positionOfTheUncoveredBoxOnTheCheckerboard[horizontalBox][verticalBox] = true;
+				
+				return true;
+			}
 			
-			return true;
+			this.endOfGame = true;
 		}
-		
-		this.endOfGame = true;
 		return false;
 	}
 	
