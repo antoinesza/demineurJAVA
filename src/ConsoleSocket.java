@@ -46,16 +46,38 @@ public class ConsoleSocket {
 	}
 	
 	private void interpretationOfTheUserInput(String saisi) {
+		int horizontalHeight;
+		int verticalHeight;
 		switch (saisi) {
 		case "case":
 			System.out.println("Sélectionner le numéro de la ligne horizontal.");
-				int horizontalHeight = scanner.nextInt();
+				horizontalHeight = scanner.nextInt();
 				scanner.nextLine();
 			System.out.println("Sélectionner le numéro de la ligne vertical.");
-				int verticalHeight = scanner.nextInt();
+				verticalHeight = scanner.nextInt();
 				scanner.nextLine();
 			
 			demineur.discoverTheBox(horizontalHeight, verticalHeight);
+			break;
+		case "poser":
+			System.out.println("Sélectionner le numéro de la ligne horizontal.");
+				horizontalHeight = scanner.nextInt();
+				scanner.nextLine();
+			System.out.println("Sélectionner le numéro de la ligne vertical.");
+				verticalHeight = scanner.nextInt();
+				scanner.nextLine();
+				
+			demineur.putTheFlag(horizontalHeight, verticalHeight);
+			break;
+		case "retirer":
+			System.out.println("Sélectionner le numéro de la ligne horizontal.");
+				horizontalHeight = scanner.nextInt();
+				scanner.nextLine();
+			System.out.println("Sélectionner le numéro de la ligne vertical.");
+				verticalHeight = scanner.nextInt();
+				scanner.nextLine();
+				
+			demineur.removeTheFlag(horizontalHeight, verticalHeight);
 			break;
 		}
 	}
