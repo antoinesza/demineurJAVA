@@ -15,6 +15,15 @@ public class ConsoleSocket {
 		this.run();
 	}
 	
+	public ConsoleSocket(int horizontalBox, int verticalBox) {
+		this.horizontalHeight = horizontalBox;
+		this.verticalHeight = verticalBox;
+		this.demineur = new Engine(this.horizontalHeight, this.verticalHeight);
+		
+		
+		this.run();
+	}
+	
 	private void run() {
 		String saisi;
 		do {

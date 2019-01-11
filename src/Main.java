@@ -20,7 +20,11 @@ public class Main {
 					break;  
 				
 				case "console":
-					new ConsoleSocket();
+					System.out.println("Saisir la hauteur du démineur");
+					int height = sc.nextInt();sc.nextLine();
+					System.out.println("Saisir la longeur du démineur");
+					int width = sc.nextInt();sc.nextLine();
+					new ConsoleSocket(height, width);
 					str = "quitter";
 					break;
         	}
